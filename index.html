@@ -51,9 +51,9 @@
             </div>
             <div class="col-md-4 customer-charges">
                 <h3> My Earnings Info </h3>
-                <p> Tip Total: </p>
-                <p> Meal Count: {{ data.mealcount | number: 0 }}</p>
-                <p> Average Tip Per Meal: </p>
+                <p> Tip Total: {{ data.tipTotal | number : 2 }}</p>
+                <p> Meal Count: {{ data.mealCount | number: 0 }}</p>
+                <p> Average Tip Per Meal: {{ data.avgTipPerMeal | number: 2 }}</p>
             </div>
             <div class="col-md-2 col-md-offset-8">
                 <button ng-click="reloadPage()" class="btn btn-default"> Reset </button>
