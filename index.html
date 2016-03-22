@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body ng-controller="formCtrl">
+<body ng-controller="waitstaffController">
 
     <section>
         <h1> Waitstaff Calculator </h1>
@@ -42,20 +42,20 @@
                     <button type="reset" ng-click="cancel()" class="btn btn-default">Cancel</button>
                 </form>
             </div>
-            <div ng-controller="displayCtrl" class="col-md-4 customer-charges">
+            <div class="col-md-4 customer-charges">
                 <h3> Current Customer Charges </h3>
                 <p> Subtotal: {{ data.subtotal | number:2 }} </p>
                 <p> Tip: {{ data.tip | number:2 }} </p>
                 <br>
-                <p> Total: {{data.total | number:2 }} </p>
+                <p> Total: {{data.total | number:2}} </p>
             </div>
             <div class="col-md-4 customer-charges">
                 <h3> My Earnings Info </h3>
-                <p> Tip Total: {{ earnings.total | number:2 }} </p>
-                <p> Meal Count: {{ earnings.meals | number:0 }}</p>
-                <p> Average Tip Per Meal: {{ earnings.average | number:2 }}</p>
+                <p> Tip Total: </p>
+                <p> Meal Count: {{ data.mealcount | number: 0 }}</p>
+                <p> Average Tip Per Meal: </p>
             </div>
-            <div ng-controller="reset" class="col-md-2 col-md-offset-8">
+            <div class="col-md-2 col-md-offset-8">
                 <button ng-click="reloadPage()" class="btn btn-default"> Reset </button>
             </div>
         </div>
