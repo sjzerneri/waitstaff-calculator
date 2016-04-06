@@ -1,36 +1,49 @@
-var app = angular.module('tipCalc', ['ngAnimate'])
+angular.module('tipCalc', ['ngAnimate', 'ngRoute'])
+    .config(function ($routeProvider) {
+        $routeProvider.when('/', {
+            templateUrl: 'home.html',
+            controller: 'waitstaffController'
+        }).when('/new-meal', {
+            templateUrl: 'new-meal.html',
+            controller: 'waitstaffController'
+        }).when('/my-earnings', {
+            templateUrl: 'my-earnings.html',
+            controller: 'waitstaffController'
+        })
+    })
+    .controller('waitstaffController', function ($scope, $rootScope) {
 
+        var mealCount, tipTotal, avgTipPerMeal;
 
-.controller('waitstaffController', function ($scope, $rootScope) {
+        mealCount = 0
+        tipTotal = 0
+        avgTipPerMeal = 0;
 
-    var mealCount, tipTotal, avgTipPerMeal;
+        $scope.submit = function () {
 
-    mealCount = 0
-    tipTotal = 0
-    avgTipPerMeal = 0;
+            $scope.submitted = true;
 
-    $scope.submit = function () {
-        $scope.submitted = true;
-        if ($scope.mealDetailForm.$valid) {
-            var subtotal, tip, total;
+            if ($scope.mealDetailForm.$valid) {
 
-            subtotal = $scope.input.mealPrice + $scope.input.mealPrice * $scope.input.taxRate / 100;
-            tip = subtotal * $scope.input.tipPercentage / 100
-            total = subtotal + tip
-            mealCount += 1
-            tipTotal += tip
-            avgTipPerMeal = tipTotal / mealCount;
+                var subtotal, tip, total;
 
-            $scope.data = {
-                subtotal: subtotal,
-                tip: tip,
-                total: total,
-                mealCount: mealCount,
-                tipTotal: tipTotal,
-                avgTipPerMeal: avgTipPerMeal
+                subtotal = $scope.input.mealPrice + $scope.input.mealPrice * $scope.input.taxRate / 100;
+                tip = subtotal * $scope.input.tipPercentage / 100
+                total = subtotal + tip
+
+                mealCount += 1
+                tipTotal += tip
+                avgTipPerMeal = tipTotal / mealCount;
+
+                $scope.data = {
+                    subtotal: subtotal,
+                    tip: tip,
+                    total: total,
+                    mealCount: mealCount,
+                    tipTotal: tipTotal,
+                    avgTipPerMeal: avgTipPerMeal
+                }
+                console.log($scope.data.mealcount);
             }
-            console.log($scope.data.mealcount);
-        }
-    };
-
-});
+        };
+    });

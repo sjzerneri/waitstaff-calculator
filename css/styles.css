@@ -52,6 +52,20 @@ body {
     color: white
 }
 
+a {
+    color: white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+a:hover {
+    color: yellow;
+}
+
 
 /* Header styles (Main Module)
 (all the styles inside the < header > or < nav > tags)
@@ -71,6 +85,19 @@ body {
 .form-group {
     margin-top: 4rem;
     margin-bottom: 4rem;
+}
+
+.links {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.home-text {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    font-size: 3rem;
 }
 
 
