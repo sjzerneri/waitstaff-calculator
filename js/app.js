@@ -1,17 +1,21 @@
 angular.module('tipCalc', ['ngAnimate', 'ngRoute'])
     .config(function ($routeProvider) {
         $routeProvider.when('/', {
-            templateUrl: 'home.html',
-            controller: 'waitstaffController'
+            templateUrl: 'home.html'
         }).when('/new-meal', {
             templateUrl: 'new-meal.html',
-            controller: 'waitstaffController'
+            controller: 'mainController'
         }).when('/my-earnings', {
             templateUrl: 'my-earnings.html',
-            controller: 'waitstaffController'
+            controller: 'earningsCtrl'
         })
     })
-    .controller('waitstaffController', function ($scope, $rootScope) {
+    .run(function ($rootScope) {
+        $rootScope.meals = [];
+    })
+    .controller('mainController', function ($rootScope, $scope) {
+
+        $scope.data = {};
 
         var mealCount, tipTotal, avgTipPerMeal;
 
@@ -43,7 +47,26 @@ angular.module('tipCalc', ['ngAnimate', 'ngRoute'])
                     tipTotal: tipTotal,
                     avgTipPerMeal: avgTipPerMeal
                 }
-                console.log($scope.data.mealcount);
+
+                $rootScope.sharedData = {
+                    mealCount: mealCount,
+                    tipTotal: tipTotal
+                }
+
+                $rootScope.meals.push({
+                    subtotal: subtotal,
+                    tip: tip
+                })
             }
-        };
+        }
+    })
+    .controller('earningsCtrl', function ($rootScope, $scope) {
+        $scope.tipTotal = 0;
+        $scope.mealCount = $rootScope.meals.length;
+
+        $rootScope.meals.forEach(function (meal) {
+            $scope.tipTotal += meal.tip;
+        })
+
+        $scope.avgTipEarnings = $scope.tipTotal / $scope.mealCount;
     });
