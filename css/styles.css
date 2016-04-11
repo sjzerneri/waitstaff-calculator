@@ -66,6 +66,10 @@ a:hover {
     color: yellow;
 }
 
+section {
+    margin-top: 2rem;
+}
+
 
 /* Header styles (Main Module)
 (all the styles inside the < header > or < nav > tags)
@@ -112,3 +116,34 @@ Responsive styles
 (the very last module in the CSS, contains all the media queries and it is dealing with the compatibility with mobiles and tablets)
 place all the mobile tables styles bellow this line
 */
+
+.view-animate-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.view-animate {
+    padding: 10px;
+}
+
+.view-animate.ng-enter,
+.view-animate.ng-leave {
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    padding: 10px;
+}
+
+.view-animate.ng-enter {
+    left: 100%;
+}
+
+.view-animate.ng-enter.ng-enter-active {
+    left: 0;
+}
+
+.view-animate.ng-leave.ng-leave-active {
+    left: -100%;
+}
